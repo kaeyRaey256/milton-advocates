@@ -1,19 +1,4 @@
-// mobile nav
-
-const hamburger=document.getElementById("hamburger")
-const mobileNav=document.getElementById("mobileNav")
-
-hamburger.onclick=()=>{
-
-mobileNav.classList.toggle("open")
-
-}
-
-
-
-// reveal animation
-
-const reveals=document.querySelectorAll(".reveal")
+const elements=document.querySelectorAll("section")
 
 const observer=new IntersectionObserver(entries=>{
 
@@ -21,7 +6,8 @@ entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-entry.target.classList.add("visible")
+entry.target.style.opacity=1
+entry.target.style.transform="translateY(0)"
 
 }
 
@@ -29,4 +15,12 @@ entry.target.classList.add("visible")
 
 })
 
-reveals.forEach(el=>observer.observe(el))
+elements.forEach(el=>{
+
+el.style.opacity=0
+el.style.transform="translateY(40px)"
+el.style.transition="all .8s ease"
+
+observer.observe(el)
+
+})
